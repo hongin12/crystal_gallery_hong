@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+signup
+{% endblock title %}
+
+
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+    .wrapper {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .container_signup {
+        width: 40rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-family: 'Krona One', sans-serif;
+        font-size: 1vw;
+    }
+
+    form {
+        background-color: rgb(255, 255, 255);
+        border: 1px double lightgrey;
+        padding-bottom: 5%;
+        border-radius: 3rem;
+
+    }
+
+    a {
+        color: black;
+    }
+
+    a:hover {
+        color: cornflowerblue;
+    }
+
+    .form-group {
+        line-height: 280%;
+    }
+
+    .form-control {
+        size: 10;
+    }
+
+    .center-text {
+        font-size: smaller;
+        color: rgb(132, 132, 132)
+    }
+
+    .btn {
+        border-color: #ffffff;
+        background-color: #000000;
+        color: #FFF;
+        border-radius: 10rem;
+
+    }
+
+    .mb-3 {
+        margin-left: 5rem;
+
+    }
+
+    .agree {
+        text-align: center;
+
+    }
+
+    .agree-detail {
+        font-size: x-small;
+        text-align: left;
+        margin-left: 11.9rem;
+    }
+
+    .red_txt {
+        font-size: xx-small;
+    }
+</style>
+{% endblock head %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="wrapper">
+        <div class="container_signup">
+            <form action="{% url 'signup' %}" method="POST" class="register-form login-form">
+                <div>
+                    {% csrf_token %}
+                    <br>
+                    <h1>Sign Up</h1>
+                    <br>
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">E-mail</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="email" placeholder="Email Address">
+                        </div>
+                    </div>
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="mb-3 row" style="text-align: left;">
+                        <label class="col-sm-3 col-form-label">Password Confirm</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="confirmation" placeholder="Confirm Password">
+                        </div>
+                    </div>
+
+                    <div class="agree">
+                        <input type="checkbox" id="chk_agree" name="chk_agree" onclick='selectAll(this)' required>
+                        <label for="chk_agree"><strong>크리스탈갤러리 약관에 모두 동의합니다.</strong></label>
+
+                        <div class="agree-detail">
+                            <div class="checkbox_wrap">
+                                <input type="checkbox" id="news_letter" name="agree_chk" class="agree_chk" onclick='checkSelectAll(this)'>
+                                <label>[필수]크리스탈갤러리 이용약관 동의</label>
+                            </div>
+                            
+                            <div class="checkbox_wrap mar27">
+                                <input type="checkbox" id="marketing" name="agree_chk" class="agree_chk" onclick='checkSelectAll(this)'>
+                                <label>[필수]개인정보 수집 및 이용에 대한 동의</label>
+                                <ul class="explan_txt">
+                                    <li><span class="red_txt">항목 : 성별, 생년월일</span></li>
+                                    <li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 수집하는 <br />개인정보에
+                                        대해 동의하지 않거나 거부하실 수 있습니다.<br />
+                                        다만 이때 회원 대상 서비스 및 가입이 제한될 수 있습니다.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // 체크박스 전체 선택
+                        function checkSelectAll(checkbox)  {
+                            const selectall 
+                              = document.querySelector('input[name="chk_agree"]');
+                            
+                            if(checkbox.checked === false)  {
+                              selectall.checked = false;
+                            }
+                          }
+                          
+                          function selectAll(selectAll)  {
+                            const checkboxes 
+                               = document.getElementsByName('agree_chk');
+                            
+                            checkboxes.forEach((checkbox) => {
+                              checkbox.checked = selectAll.checked
+                            })
+                          }
+                    </script>
+
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <input type="submit" class="btn" value="Sign up!" />
+                    </div>
+                    <br><br>
+                    <div class="center-text">
+                        Already have an account?<a href="{% url 'login' %}">Log In here.</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>

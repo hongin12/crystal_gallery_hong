@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+my page
+{% endblock title %}
+
+{% block head %}
+
+<style>
+    @font-face {
+        font-family: 'IBMPlexSansKR-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        border-radius: 10px;
+        background-color: black;
+    }
+
+    .wrapper {
+        background-color: black;
+    }
+
+    .card {
+        width: 600px;
+        border: none;
+        border-radius: 50px;
+        background-color: rgb(42, 42, 42);
+        border: 1px solid black;
+    }
+
+    .stats {
+        background: #f2f5f8 !important;
+        color: #000 !important;
+    }
+
+    .articles {
+        font-size: 14px;
+        color: lightgray;
+        text-align: center;
+    }
+
+    .number1 {
+        font-weight: 500;
+    }
+
+    .mygallerybtn {
+        float: right;
+        margin-top: 20px;
+        margin-right: 1rem;
+    }
+
+    .btn-outline-secondary {
+        padding: 2px auto;
+    }
+</style>
+{% endblock head %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="wrapper">
+        <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+        <div class="container mt-5 d-flex justify-content-center">
+            <div class="card p-3">
+                <div class="d-flex align-items-center">
+                    <div class="image"> <img src="{% static '크갤로고투명.png' %}" class="rounded" width="200" height="150">
+                    </div>
+                    <div class="ml-3 w-100" style="color: white;">
+                        <h5 class="mb-0 mt-0">
+                            NAME:
+                            <strong style="font-size: 17px;color:lightslategrey;">
+                                {{user.username}}
+                            </strong>
+                        </h5>
+                        <h5 class="mb-0 mt-0">
+                            E-mail: <strong
+                                style="font-size: 17px; color:lightslategrey;">{% if user.is_authenticated %}{{ user.email }}{% endif %}</strong>
+                        </h5>
+
+                        <div class="p-2 mt-2 bg-dark d-flex justify-content-center rounded text-white stats">
+                            <div class="row-vh d-flex flex-column text-center">
+                                <div class="text-muted"><strong style="font-weight: bold;">COIN</strong></div>
+                                <div class="text-muted">{{ user.coin }}</div>
+                            </div>
+                        </div>
+
+                        <div class="mygallerybtn" style="font-family: 'IBMPlexSansKR-Regular';">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"><a
+                                    href="{% url 'mygallery' %}" style="color:white; text-decoration:none;">My Gallery로
+                                    이동</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock content %}
+</body>

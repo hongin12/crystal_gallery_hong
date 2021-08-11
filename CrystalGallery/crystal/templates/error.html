@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+crystalgallery
+{% endblock title %}
+
+{% block head %}
+
+{% endblock head %}
+
+<body>
+  {% block content %}
+  <div class="wrapper">
+
+    {% block replace %}
+    <br><br>
+    <CENTER>
+      <h1 style='border: 5px red solid;'> 잘못된 파일 형식입니다. </h1>
+    </CENTER>
+    <br>
+    {% endblock replace %}
+
+  </div>
+  {% endblock content %}
+</body>
